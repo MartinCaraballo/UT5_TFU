@@ -4,7 +4,7 @@ using WebApp.Repository;
 
 namespace WebApp.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("atletas")]
     [ApiController]
     public class AtletaController : Controller
     { 
@@ -15,7 +15,7 @@ namespace WebApp.Controllers
             _atletaRepository = atletaRepository;
         }
 
-        [HttpGet("/getAtletas")]
+        [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Atleta>))]
         public IActionResult GetAtletas()
         {
@@ -39,7 +39,7 @@ namespace WebApp.Controllers
             return Ok(atleta);
         }
 
-        [HttpPost("/crearAtleta")]
+        [HttpPost()]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         public IActionResult CreateCategory([FromBody] Atleta atleta)

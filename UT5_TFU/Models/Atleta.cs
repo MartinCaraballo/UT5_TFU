@@ -2,8 +2,8 @@ namespace WebApp.Models
 {
     public class Atleta
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int Id { get; }
+        public string Name { get; }
 
         public Atleta(int id, string name)
         {
