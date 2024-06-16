@@ -1,14 +1,19 @@
+using System.DateTime;
+
 namespace WebApp.Models
 {
     public class Atleta
     {
         public int Id { get; }
-        public string Name { get; }
-
-        public Atleta(int id, string name)
+        public string Nombre { get; }
+        public DateTime FechaNac { get; }
+        public string Sexo { get; }
+        public Atleta(int id, string nombre, string fechaNac, string sexo)
         {
             Id = id;
-            Name = name;
+            Nombre = nombre;
+            FechaNac = fechaNac;
+            Sexo = sexo;
         }
     }
 }
