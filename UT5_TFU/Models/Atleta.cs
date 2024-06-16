@@ -1,4 +1,4 @@
-using System.DateTime;
+using System;
 
 namespace WebApp.Models
 {
@@ -8,7 +8,8 @@ namespace WebApp.Models
         public string Nombre { get; }
         public DateTime FechaNac { get; }
         public string Sexo { get; }
-        public Atleta(int id, string nombre, string fechaNac, string sexo)
+        
+        public Atleta(int id, string nombre, DateTime fechaNac, string sexo)
         {
             Id = id;
             Nombre = nombre;
