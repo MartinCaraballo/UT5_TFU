@@ -1,0 +1,8 @@
+POST http://localhost:5177/athletes
+Content-Type: application/json
+
+{
+    "id": "1",
+    "name": "Maracatunga",
+    "Discipline": "Underwater Chess"
+}

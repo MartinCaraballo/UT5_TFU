@@ -1,0 +1,8 @@
+PUT  http://localhost:5177/athletes/1
+Content-Type: application/json
+
+{
+    "id": "1",
+    "name": "Maracatunga Jimenez",
+    "Discipline": "Underwater Chess"
+}

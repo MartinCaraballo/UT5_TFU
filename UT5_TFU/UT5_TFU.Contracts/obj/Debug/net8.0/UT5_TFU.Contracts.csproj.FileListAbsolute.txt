@@ -1,0 +1,12 @@
+C:\Users\juanm\TFUUT5\UT5_TFU\UT5_TFU\UT5_TFU.Contracts\bin\Debug\net8.0\UT5_TFU.Contracts.deps.json
+C:\Users\juanm\TFUUT5\UT5_TFU\UT5_TFU\UT5_TFU.Contracts\bin\Debug\net8.0\UT5_TFU.Contracts.dll
+C:\Users\juanm\TFUUT5\UT5_TFU\UT5_TFU\UT5_TFU.Contracts\bin\Debug\net8.0\UT5_TFU.Contracts.pdb
+C:\Users\juanm\TFUUT5\UT5_TFU\UT5_TFU\UT5_TFU.Contracts\obj\Debug\net8.0\UT5_TFU.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\juanm\TFUUT5\UT5_TFU\UT5_TFU\UT5_TFU.Contracts\obj\Debug\net8.0\UT5_TFU.Contracts.AssemblyInfoInputs.cache
+C:\Users\juanm\TFUUT5\UT5_TFU\UT5_TFU\UT5_TFU.Contracts\obj\Debug\net8.0\UT5_TFU.Contracts.AssemblyInfo.cs
+C:\Users\juanm\TFUUT5\UT5_TFU\UT5_TFU\UT5_TFU.Contracts\obj\Debug\net8.0\UT5_TFU.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\juanm\TFUUT5\UT5_TFU\UT5_TFU\UT5_TFU.Contracts\obj\Debug\net8.0\UT5_TFU.Contracts.sourcelink.json
+C:\Users\juanm\TFUUT5\UT5_TFU\UT5_TFU\UT5_TFU.Contracts\obj\Debug\net8.0\UT5_TFU.Contracts.dll
+C:\Users\juanm\TFUUT5\UT5_TFU\UT5_TFU\UT5_TFU.Contracts\obj\Debug\net8.0\refint\UT5_TFU.Contracts.dll
+C:\Users\juanm\TFUUT5\UT5_TFU\UT5_TFU\UT5_TFU.Contracts\obj\Debug\net8.0\UT5_TFU.Contracts.pdb
+C:\Users\juanm\TFUUT5\UT5_TFU\UT5_TFU\UT5_TFU.Contracts\obj\Debug\net8.0\ref\UT5_TFU.Contracts.dll
