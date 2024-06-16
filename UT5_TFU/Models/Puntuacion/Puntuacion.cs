@@ -1,6 +1,6 @@
 namespace WebApp.Models
 {
-    public abstract class Puntuacion : IPuntuacion
+    public abstract class Puntuacion
     {
         public Atleta Atleta { get; }
         public int Puntaje { get; }
@@ -10,7 +10,5 @@ namespace WebApp.Models
             Atleta = atleta;
             Puntaje = 0;
         }
-
-        public abstract override int CalcularPuntaje();
     }
 }
