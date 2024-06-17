@@ -6,11 +6,11 @@ namespace WebApp.Controllers
 {
     [Route("categorias")]
     [ApiController]
-    public class categoriaController : Controller
+    public class CategoriaController : Controller
     { 
         private readonly CategoriaRepository _categoriaRepository;
 
-        public categoriaController(CategoriaRepository categoriaRepository)
+        public CategoriaController(CategoriaRepository categoriaRepository)
         {
             _categoriaRepository = categoriaRepository;
         }
@@ -27,7 +27,7 @@ namespace WebApp.Controllers
             return Ok(categorias);
         }
 
-        [HttpGet("/{idcategoria}")]
+        [HttpGet("/{id}")]
         [ProducesResponseType(200, Type = typeof(Categoria))]
         public IActionResult Getcategoria(int idcategoria)
         {

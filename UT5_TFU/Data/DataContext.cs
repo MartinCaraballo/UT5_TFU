@@ -10,6 +10,8 @@ namespace WebApp.Data
         public DbSet<Evento> Eventos { get; set; }
 
         public DbSet<Categoria> Categorias { get; set; }
+
+        public DbSet<Modalidad> Modalidades { get; set;}
     }
 }
 
