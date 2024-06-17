@@ -29,9 +29,9 @@ namespace WebApp.Controllers
 
         [HttpGet("/{id}")]
         [ProducesResponseType(200, Type = typeof(Evento))]
-        public IActionResult GetEvento(int idevento)
+        public IActionResult GetEvento(int idEvento)
         {
-            var evento = _eventoRepository.GetEvento(idevento);
+            var evento = _eventoRepository.GetEvento(idEvento);
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

@@ -12,6 +12,8 @@ namespace WebApp.Data
         public DbSet<Categoria> Categorias { get; set; }
 
         public DbSet<Modalidad> Modalidades { get; set;}
+
+        public DbSet<Disciplina> Disciplinas { get; set;}
     }
 }
 

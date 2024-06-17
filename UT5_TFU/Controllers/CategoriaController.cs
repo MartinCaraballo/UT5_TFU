@@ -17,7 +17,7 @@ namespace WebApp.Controllers
 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Categoria>))]
-        public IActionResult Getcategorias()
+        public IActionResult GetCategorias()
         {
             var categorias = _categoriaRepository.GetCategorias();
 
@@ -29,9 +29,9 @@ namespace WebApp.Controllers
 
         [HttpGet("/{id}")]
         [ProducesResponseType(200, Type = typeof(Categoria))]
-        public IActionResult Getcategoria(int idcategoria)
+        public IActionResult GetCategoria(int idCategoria)
         {
-            var categoria = _categoriaRepository.GetCategoria(idcategoria);
+            var categoria = _categoriaRepository.GetCategoria(idCategoria);
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
