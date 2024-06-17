@@ -1,12 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
 using WebApp.Repository;
+using WebApp;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddTransient<Seed>();
 
 builder.Services.AddScoped<AtletaRepository>();
 
@@ -19,6 +21,14 @@ builder.Services.AddDbContext<DataContext>(options =>
 );
 
 var app = builder.Build();
+
+var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+
+using (var scope = scopedFactory.CreateScope())
+{
+    var service = scope.ServiceProvider.GetService<Seed>();
+    service.SeedDataContext();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
