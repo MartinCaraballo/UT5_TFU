@@ -1,1 +1,7 @@
-GET http://localhost:0000/atletas
+GET http://localhost:5037/atletas/1
+
+###
+GET http://localhost:5037/eventos/1
+
+###
+GET http://localhost:5037/categorias/1
