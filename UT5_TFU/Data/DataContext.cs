@@ -6,6 +6,10 @@ namespace WebApp.Data
     public class DataContext(DbContextOptions<DataContext> options) : DbContext(options)
     {
         public DbSet<Atleta> Atletas { get; set; }
+
+        public DbSet<Evento> Eventos { get; set; }
+
+        public DbSet<Categoria> Categorias { get; set; }
     }
 }
 
