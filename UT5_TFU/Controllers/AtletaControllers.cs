@@ -27,7 +27,7 @@ namespace WebApp.Controllers
             return Ok(atletas);
         }
 
-        [HttpGet("/{idAtleta}")]
+        [HttpGet("/{id}")]
         [ProducesResponseType(200, Type = typeof(Atleta))]
         public IActionResult GetAtleta(int idAtleta)
         {

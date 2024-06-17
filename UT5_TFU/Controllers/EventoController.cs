@@ -6,18 +6,18 @@ namespace WebApp.Controllers
 {
     [Route("eventos")]
     [ApiController]
-    public class eventoController : Controller
+    public class EventoController : Controller
     { 
         private readonly EventoRepository _eventoRepository;
 
-        public eventoController(EventoRepository eventoRepository)
+        public EventoController(EventoRepository eventoRepository)
         {
             _eventoRepository = eventoRepository;
         }
 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Evento>))]
-        public IActionResult Geteventos()
+        public IActionResult GetEventos()
         {
             var eventos = _eventoRepository.GetEventos();
 
@@ -27,11 +27,11 @@ namespace WebApp.Controllers
             return Ok(eventos);
         }
 
-        [HttpGet("/{idevento}")]
+        [HttpGet("/{id}")]
         [ProducesResponseType(200, Type = typeof(Evento))]
-        public IActionResult Getevento(int idevento)
+        public IActionResult GetEvento(int idEvento)
         {
-            var evento = _eventoRepository.GetEvento(idevento);
+            var evento = _eventoRepository.GetEvento(idEvento);
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
