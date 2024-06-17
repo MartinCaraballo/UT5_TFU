@@ -1,16 +1,16 @@
 namespace WebApp.Models
 {
-    public class Juez
+    public class Categoria
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public LinkedList<Puntuacion> Puntuaciones { get; set; }
+        public LinkedList<Evento> Eventos { get; set; }
 
-        public Juez(int id, string nombre)
+        public Categoria(int id, string nombre)
         {
             Id = id;
             Nombre = nombre;
-            Puntuaciones = new LinkedList<Puntuacion>();
+            Eventos = new LinkedList<Evento>();
         }
     }
 }

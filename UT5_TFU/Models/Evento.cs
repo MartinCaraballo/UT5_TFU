@@ -2,13 +2,13 @@ namespace WebApp.Models
 {
     public class Evento
     {
-        public int Id { get; }
-        public LinkedList<Puntuacion> Puntuaciones { get; }
+        public int Id { get; set; }
+        public LinkedList<Puntuacion> Puntuaciones { get; set; }
 
-        public Evento(int id, LinkedList<Puntuacion> puntuaciones)
+        public Evento(int id)
         {
             Id = id;
-            Puntuaciones = puntuaciones;
+            Puntuaciones = new LinkedList<Puntuacion>();
         }
     }
 }

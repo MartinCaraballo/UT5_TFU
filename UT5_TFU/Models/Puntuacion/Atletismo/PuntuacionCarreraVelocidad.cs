@@ -1,8 +1,15 @@
 namespace WebApp.Models;
 
-public class PuntuacionCarreraVelocidad: Puntuacion, IPuntuacion
+public class PuntuacionCarreraVelocidad : Puntuacion, IPuntuacion
 {
-    public PuntuacionCarreraVelocidad(Atleta atleta) : base(atleta) {}
+    public int Distancia { get; set; }
+    public int Tiempo { get; set; }
+
+    public PuntuacionCarreraVelocidad(Atleta atleta, int distancia, int tiempo) : base(atleta)
+    {
+        Distancia = distancia;
+        Tiempo = tiempo;
+    }
 
     public int CalcularPuntaje()
     {
