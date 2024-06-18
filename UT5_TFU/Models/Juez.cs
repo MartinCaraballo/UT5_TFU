@@ -4,7 +4,7 @@ namespace WebApp.Models
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public LinkedList<Puntuacion> Puntuaciones { get; set; }
+        public ICollection<Puntuacion> Puntuaciones { get; set; }
 
     }
 }

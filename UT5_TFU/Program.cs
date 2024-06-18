@@ -11,10 +11,10 @@ builder.Services.AddControllers();
 builder.Services.AddTransient<Seed>();
 
 builder.Services.AddScoped<AtletaRepository>();
-// builder.Services.AddScoped<CategoriaRepository>();
-// builder.Services.AddScoped<DisciplinaRepository>();
+builder.Services.AddScoped<CategoriaRepository>();
+builder.Services.AddScoped<DisciplinaRepository>();
 builder.Services.AddScoped<EventoRepository>();
-// builder.Services.AddScoped<ModalidadRepository>();
+builder.Services.AddScoped<ModalidadRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
