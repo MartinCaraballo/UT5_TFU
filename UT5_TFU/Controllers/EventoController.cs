@@ -27,11 +27,11 @@ namespace WebApp.Controllers
             return Ok(eventos);
         }
 
-        [HttpGet("/{id}")]
+        [HttpGet("{id}")]
         [ProducesResponseType(200, Type = typeof(Evento))]
-        public IActionResult GetEvento(int idEvento)
+        public IActionResult GetEvento(int id)
         {
-            var evento = _eventoRepository.GetEvento(idEvento);
+            var evento = _eventoRepository.GetEvento(id);
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

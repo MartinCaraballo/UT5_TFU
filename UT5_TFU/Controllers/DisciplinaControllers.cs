@@ -27,11 +27,11 @@ namespace WebApp.Controllers
             return Ok(disciplinas);
         }
 
-        [HttpGet("/{id}")]
+        [HttpGet("{id}")]
         [ProducesResponseType(200, Type = typeof(Disciplina))]
-        public IActionResult GetDisciplina(int idDisciplina)
+        public IActionResult GetDisciplina(int id)
         {
-            var disciplina = _disciplinaRepository.GetDisciplina(idDisciplina);
+            var disciplina = _disciplinaRepository.GetDisciplina(id);
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

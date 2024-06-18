@@ -27,11 +27,11 @@ namespace WebApp.Controllers
             return Ok(categorias);
         }
 
-        [HttpGet("/{id}")]
+        [HttpGet("{id}")]
         [ProducesResponseType(200, Type = typeof(Categoria))]
-        public IActionResult GetCategoria(int idCategoria)
+        public IActionResult GetCategoria(int id)
         {
-            var categoria = _categoriaRepository.GetCategoria(idCategoria);
+            var categoria = _categoriaRepository.GetCategoria(id);
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

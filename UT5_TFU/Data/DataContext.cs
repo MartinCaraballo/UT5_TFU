@@ -14,6 +14,11 @@ namespace WebApp.Data
         public DbSet<Modalidad> Modalidades { get; set;}
 
         public DbSet<Disciplina> Disciplinas { get; set;}
+    
+        public DbSet<PuntuacionCarreraPista> PuntuacionesP { get; set;}
+        public DbSet<PuntuacionCarreraVelocidad> PuntuacionesV { get; set;}
+        public DbSet<PuntuacionSaltos> PuntuacionesSal { get; set; }
+
     }
 }
 

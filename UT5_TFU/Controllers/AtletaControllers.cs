@@ -27,11 +27,11 @@ namespace WebApp.Controllers
             return Ok(atletas);
         }
 
-        [HttpGet("/{id}")]
+        [HttpGet("{id}")]
         [ProducesResponseType(200, Type = typeof(Atleta))]
-        public IActionResult GetAtleta(int idAtleta)
+        public IActionResult GetAtleta(int id)
         {
-            var atleta = _atletaRepository.GetAtleta(idAtleta);
+            var atleta = _atletaRepository.GetAtleta(id);
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

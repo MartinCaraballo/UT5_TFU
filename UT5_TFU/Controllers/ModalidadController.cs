@@ -27,11 +27,11 @@ namespace WebApp.Controllers
             return Ok(modalidades);
         }
 
-        [HttpGet("/{id}")]
+        [HttpGet("{id}")]
         [ProducesResponseType(200, Type = typeof(Modalidad))]
-        public IActionResult Getmodalidad(int idmodalidad)
+        public IActionResult Getmodalidad(int id)
         {
-            var modalidad = _modalidadRepository.GetModalidad(idmodalidad);
+            var modalidad = _modalidadRepository.GetModalidad(id);
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
