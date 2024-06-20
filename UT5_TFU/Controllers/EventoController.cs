@@ -1,61 +1,69 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebApp.Models;
-using WebApp.Repository;
+using WebApp.Data;
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using WebApp.Services;
 
 namespace WebApp.Controllers
 {
-    [Route("eventos")]
     [ApiController]
-    public class EventoController : Controller
-    { 
-        private readonly EventoRepository _eventoRepository;
+    [Route("eventos")]
+    public class EventoController : ControllerBase
+    {
+        private readonly DataContext _context;
+        private readonly EventoService _eventoService;
 
-        public EventoController(EventoRepository eventoRepository)
+        public EventoController(DataContext context, EventoService eventoService)
         {
-            _eventoRepository = eventoRepository;
+            _context = context;
+            _eventoService = eventoService;
+        }
+
+        [HttpPost]
+        public IActionResult Create(Evento model)
+        {
+            if (model == null)
+            {
+                return BadRequest("Modalidad model is null.");
+            }
+
+            _eventoService.InitializeEvento(model);
+
+            _context.Eventos.Add(model);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById), new { id = model.Id }, model);
         }
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Evento>))]
-        public IActionResult GetEventos()
+        public IActionResult GetAll()
         {
-            var eventos = _eventoRepository.GetEventos();
-
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            var eventos = _context.Eventos
+                .Include(e => e.Puntuaciones)
+                        .ThenInclude(p => p.Atletaa)
+                .ToList();
 
             return Ok(eventos);
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(200, Type = typeof(Evento))]
-        public IActionResult GetEvento(int id)
+        public IActionResult GetById(int id)
         {
-            var evento = _eventoRepository.GetEvento(id);
+            var model = _context.Eventos
+                .Include(e => e.Puntuaciones)
+                        .ThenInclude(p => p.Atletaa)
+                .FirstOrDefault(m => m.Id == id);
 
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            return Ok(evento);
-        }
-
-        [HttpPost()]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(400)]
-        public IActionResult CreateCategory([FromBody] Evento evento)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            if(!_eventoRepository.CreateEvento(evento))
+            if (model == null)
             {
-                ModelState.AddModelError("", "Something went wrong while savin");
-                return StatusCode(500, ModelState);
+                return NotFound();
             }
 
-            return Ok("Successfully created");
+            return Ok(model);
         }
-
-
     }
 }
