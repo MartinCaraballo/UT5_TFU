@@ -12,6 +12,5 @@ namespace WebApp.Models
             Nombre = nombre;
             Puntuaciones = new List<Puntuacion>();
         }
-
     }
 }
