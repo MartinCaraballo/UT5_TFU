@@ -12,7 +12,7 @@ namespace WebApp.Repository
             _context = context;
         }
 
-        public ICollection<Modalidad> GetModalidades()
+        public List<Modalidad> GetModalidades()
         {
             return _context.Modalidades.ToList();
         }

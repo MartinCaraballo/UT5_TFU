@@ -1,6 +1,6 @@
 namespace WebApp.Models
 {
-    public abstract class Puntuacion
+    public class Puntuacion
     {
         public int Id { get; set; }
         public Atleta Atletaa { get; set; }
