@@ -1,13 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Models;
-using WebApp.Repository;
 using WebApp.Data;
-
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
+using WebApp.Services;
 
 namespace WebApp.Controllers
 {
@@ -16,10 +11,12 @@ namespace WebApp.Controllers
     public class ModalidadController : ControllerBase
     {
         private readonly DataContext _context;
+        private readonly ModalidadService _modalidadService;
 
-        public ModalidadController(DataContext context)
+        public ModalidadController(DataContext context, ModalidadService modalidadService)
         {
             _context = context;
+            _modalidadService = modalidadService;
         }
 
         [HttpPost]
@@ -30,34 +27,7 @@ namespace WebApp.Controllers
                 return BadRequest("Modalidad model is null.");
             }
 
-            if (model.Categorias == null)
-            {
-                model.Categorias = new List<Categoria>();
-            }
-
-            foreach (var categoria in model.Categorias)
-            {
-                if (categoria.Eventos == null)
-                {
-                    categoria.Eventos = new List<Evento>();
-                }
-
-                foreach (var evento in categoria.Eventos)
-                {
-                    if (evento.Puntuaciones == null)
-                    {
-                        evento.Puntuaciones = new List<Puntuacion>();
-                    }
-
-                    foreach (var puntuacion in evento.Puntuaciones)
-                    {
-                        if (puntuacion.Atletaa == null)
-                        {
-                            puntuacion.Atletaa = new Atleta();
-                        }
-                    }
-                }
-            }
+            _modalidadService.InitializeModalidad(model);
 
             _context.Modalidades.Add(model);
             _context.SaveChanges();

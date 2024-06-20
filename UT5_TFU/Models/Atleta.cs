@@ -8,7 +8,6 @@ namespace WebApp.Models
         public string Nombre { get; set; }
         public DateTime FechaNac { get; set; }
         public string Sexo { get; set; }
-
     }
 }
 

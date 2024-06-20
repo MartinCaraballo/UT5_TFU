@@ -6,5 +6,6 @@ namespace WebApp.Models
         public string Nombre { get; set; }
         public ICollection<Categoria> Categorias { get; set; }
         
+        
     }
 }

@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Models;
-using WebApp.Repository;
 using WebApp.Data;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using WebApp.Services;
 
 namespace WebApp.Controllers
 {
@@ -16,10 +16,11 @@ namespace WebApp.Controllers
     public class DisciplinaController : ControllerBase
     {
         private readonly DataContext _context;
-
-        public DisciplinaController(DataContext context)
+        private readonly DisciplinaService _disciplinaService;
+        public DisciplinaController(DataContext context, DisciplinaService disciplinaService)
         {
             _context = context;
+            _disciplinaService = disciplinaService;
         }
 
         [HttpPost]
@@ -30,42 +31,8 @@ namespace WebApp.Controllers
                 return BadRequest("Modalidad model is null.");
             }
 
-            if (model.Modalidades == null)
-            {
-                model.Modalidades = new List<Modalidad>();
-            }
+            _disciplinaService.InitializeDisciplina(model);
 
-            foreach (var modalidad in model.Modalidades)
-            {
-                if (modalidad.Categorias == null)
-                {
-                    modalidad.Categorias = new List<Categoria>();
-                }
-
-                foreach (var categoria in modalidad.Categorias)
-                {
-                    if (categoria.Eventos == null)
-                    {
-                        categoria.Eventos = new List<Evento>();
-                    }
-
-                    foreach (var evento in categoria.Eventos)
-                    {
-                        if (evento.Puntuaciones == null)
-                        {
-                            evento.Puntuaciones = new List<Puntuacion>();
-                        }
-
-                        foreach (var puntuacion in evento.Puntuaciones)
-                        {
-                            if (puntuacion.Atletaa == null)
-                            {
-                                puntuacion.Atletaa = new Atleta();
-                            }
-                        }
-                    }
-                }
-            }
             _context.Disciplinas.Add(model);
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetById), new { id = model.Id }, model);
@@ -88,11 +55,12 @@ namespace WebApp.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var model = _context.Modalidades
-                .Include(m => m.Categorias)
-                    .ThenInclude(c => c.Eventos)
-                        .ThenInclude(e => e.Puntuaciones)
-                            .ThenInclude(p => p.Atletaa)
+            var model = _context.Disciplinas
+                .Include(r => r.Modalidades)
+                    .ThenInclude(m => m.Categorias)
+                        .ThenInclude(c => c.Eventos)
+                            .ThenInclude(e => e.Puntuaciones)
+                                .ThenInclude(p => p.Atletaa)
                 .FirstOrDefault(m => m.Id == id);
 
             if (model == null)

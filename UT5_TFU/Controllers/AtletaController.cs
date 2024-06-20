@@ -1,25 +1,26 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Models;
-using WebApp.Repository;
+using WebApp.Services;
+using System.Collections.Generic;
 
 namespace WebApp.Controllers
 {
     [Route("atletas")]
     [ApiController]
-    public class AtletaController : Controller
-    { 
-        private readonly AtletaRepository _atletaRepository;
+    public class AtletaController : ControllerBase
+    {
+        private readonly AtletaService _atletaService;
 
-        public AtletaController(AtletaRepository atletaRepository)
+        public AtletaController(AtletaService atletaService)
         {
-            _atletaRepository = atletaRepository;
+            _atletaService = atletaService;
         }
 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Atleta>))]
         public IActionResult GetAtletas()
         {
-            var atletas = _atletaRepository.GetAtletas();
+            var atletas = _atletaService.GetAtletas();
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -29,9 +30,13 @@ namespace WebApp.Controllers
 
         [HttpGet("{id}")]
         [ProducesResponseType(200, Type = typeof(Atleta))]
+        [ProducesResponseType(404)]
         public IActionResult GetAtleta(int id)
         {
-            var atleta = _atletaRepository.GetAtleta(id);
+            var atleta = _atletaService.GetAtleta(id);
+
+            if (atleta == null)
+                return NotFound();
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -39,23 +44,22 @@ namespace WebApp.Controllers
             return Ok(atleta);
         }
 
-        [HttpPost()]
-        [ProducesResponseType(204)]
+        [HttpPost]
+        [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public IActionResult CreateCategory([FromBody] Atleta atleta)
+        [ProducesResponseType(500)]
+        public IActionResult CreateAtleta([FromBody] Atleta atleta)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            if(!_atletaRepository.CreateAtleta(atleta))
+            if (!_atletaService.CreateAtleta(atleta))
             {
-                ModelState.AddModelError("", "Something went wrong while savin");
+                ModelState.AddModelError("", "Something went wrong while saving");
                 return StatusCode(500, ModelState);
             }
 
             return Ok("Successfully created");
         }
-
-
     }
 }
